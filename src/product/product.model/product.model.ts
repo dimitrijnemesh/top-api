@@ -4,7 +4,7 @@ import { HydratedDocument } from 'mongoose';
 export type ProductDocument = HydratedDocument<ProductModel>;
 
 @Schema()
-class ProductCharacteristics {
+export class ProductCharacteristics {
 	@Prop({ required: true })
 	name: string;
 
