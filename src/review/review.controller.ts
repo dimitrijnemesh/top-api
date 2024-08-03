@@ -8,8 +8,9 @@ import {
 	Inject,
 	Param,
 	Post,
+	UsePipes,
+	ValidationPipe,
 } from '@nestjs/common';
-import { ReviewModel } from './review.model/review.model';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { ReviewService } from './review.service';
 import { REVIEW_NOT_FOUND } from './review.constants';
@@ -23,6 +24,7 @@ export class ReviewController {
 		return this.reviewService.findByProductId(productId);
 	}
 
+	@UsePipes(new ValidationPipe())
 	@Post('create')
 	async create(@Body() dto: CreateReviewDto) {
 		return this.reviewService.create(dto);
