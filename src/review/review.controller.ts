@@ -28,6 +28,7 @@ export class ReviewController {
 	async createReview(@Body() dto: CreateReviewDto) {
 		return this.reviewService.create(dto);
 	}
+
 	@UseGuards(JWTAuthGuard)
 	@Delete(':id')
 	async delete(@Param('id') id: string) {
