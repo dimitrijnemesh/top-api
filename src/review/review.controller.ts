@@ -5,6 +5,7 @@ import {
 	Get,
 	Param,
 	Post,
+	Req,
 	UseGuards,
 	UsePipes,
 	ValidationPipe,
@@ -23,6 +24,7 @@ export class ReviewController {
 	}
 
 	@UsePipes(new ValidationPipe())
+	@UseGuards(JWTAuthGuard)
 	@Post('createReview')
 	async createReview(@Body() dto: CreateReviewDto) {
 		return this.reviewService.create(dto);
