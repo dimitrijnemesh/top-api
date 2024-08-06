@@ -14,7 +14,7 @@ export class AuthService {
 		@Inject(JwtService) private readonly jwtService: JwtService,
 	) {}
 
-	async createUser(dto: AuthDto) {
+	async createUser(dto: AuthDto): Promise<UserDocument> {
 		const salt = await genSalt(10);
 		const newUser = new this.userModel({
 			email: dto.login,
@@ -23,7 +23,7 @@ export class AuthService {
 		return newUser.save();
 	}
 
-	async findUser(email: string) {
+	async findUser(email: string): Promise<UserDocument | null> {
 		return this.userModel.findOne({ email }).exec();
 	}
 
@@ -39,7 +39,7 @@ export class AuthService {
 		return { email: user.email };
 	}
 
-	async login(email: string) {
+	async login(email: string): Promise<{ access_token: string }> {
 		const payload = { email };
 		return {
 			access_token: await this.jwtService.signAsync(payload),
