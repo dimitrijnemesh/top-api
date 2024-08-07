@@ -23,14 +23,11 @@ export class ProductModel {
 	@Prop({ required: true })
 	price: number;
 
-	@Prop({ required: true })
+	@Prop({ required: false })
 	oldPrice: number;
 
 	@Prop({ required: true })
 	credit: number;
-
-	@Prop({ required: true })
-	calculatedRating: number;
 
 	@Prop({ required: true })
 	description: string;
