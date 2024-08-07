@@ -51,7 +51,7 @@ export class TopPageModel {
 	@Prop({ required: true })
 	category: string;
 
-	@Prop()
+	@Prop({ required: false })
 	hh?: HhData;
 
 	@Prop({ required: true, type: [TopPageAdvantages] })
