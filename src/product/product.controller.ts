@@ -13,24 +13,36 @@ import {
 import { ProductModel } from './product.model/product.model';
 import { FindProductDto } from './dto/find-product.dto';
 import { CreateProductDto } from './dto/create-product.dto';
+import { ProductService } from './product.service';
 
 @Controller('product')
 export class ProductController {
+	constructor(private readonly productService: ProductService) {}
 	@Get(':id')
-	async get(@Param('id') id: string) {}
+	async get(@Param('id') id: string) {
+		return this.productService.findById(id);
+	}
 
 	@UsePipes(new ValidationPipe())
 	@Post('create')
-	async create(@Body() dto: CreateProductDto) {}
+	async create(@Body() dto: CreateProductDto) {
+		return this.productService.create(dto);
+	}
 
 	@HttpCode(200)
 	@UsePipes(new ValidationPipe())
-	@Post()
-	async find(@Body() dto: FindProductDto) {}
+	@Post('find')
+	async find(@Body() dto: FindProductDto) {
+		return this.productService.findWithReview(dto);
+	}
 
 	@Patch(':id')
-	async patch(@Param('id') id: string, @Body() dto: ProductModel) {}
+	async patch(@Param('id') id: string, @Body() dto: ProductModel) {
+		return this.productService.updateById(id, dto);
+	}
 
 	@Delete(':id')
-	async delete(@Param('id') id: string) {}
+	async delete(@Param('id') id: string) {
+		return this.productService.deleteById(id);
+	}
 }

@@ -1,5 +1,12 @@
 import { Type } from 'class-transformer';
-import { IsArray, IsNotEmpty, IsOptional, IsString, ValidateNested } from 'class-validator';
+import {
+	IsArray,
+	IsNotEmpty,
+	IsNumber,
+	IsOptional,
+	IsString,
+	ValidateNested,
+} from 'class-validator';
 
 export class ProductCharacteristicsDto {
 	@IsString()
@@ -18,15 +25,15 @@ export class CreateProductDto {
 	@IsNotEmpty()
 	title: string;
 
-	@IsString()
+	@IsNumber()
 	@IsNotEmpty()
 	price: number;
 
-	@IsString()
+	@IsNumber()
 	@IsOptional()
 	oldPrice: number;
 
-	@IsString()
+	@IsNumber()
 	@IsNotEmpty()
 	credit: number;
 
